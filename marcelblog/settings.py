@@ -68,8 +68,12 @@ WSGI_APPLICATION = 'marcelblog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'personal_site',
+        'USER': 'postgres',
+        'PASSWORD': os.environ.get('POSTGRES_PASS'),
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -111,7 +115,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'reactapp/build/static')
+    os.path.join(BASE_DIR, 'reactapp')
 ]
 
 # Default primary key field type
