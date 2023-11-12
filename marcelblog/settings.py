@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j=cixmt*h5j-5*_)005$1&rs_avr2!etem4#cuyfdc#0cgbb)z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = []
 
@@ -46,7 +46,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'reactapp/build')
+            os.path.join(BASE_DIR, 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -112,10 +112,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'local-cdn/static')
+STATIC_URL = 'static/'    
 
+# Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'reactapp')
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # Default primary key field type
