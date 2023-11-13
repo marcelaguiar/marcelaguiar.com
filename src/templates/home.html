@@ -3,12 +3,8 @@
 
 
 {% block content %}
-<div class="flex h-screen justify-center items-center text-white bg-gradient-to-br from-sky-300 via-purple-500 to-sky-300">
-    <a href="{% url 'blog_home' %}" class="portal-card">
-        blog posts
-    </a>
-    <a href="{% url 'projects_home' %}" class="portal-card">
-        projects
-    </a>
+<div class="h-screen flex justify-center items-center">
+    <a href="{% url 'blog_home' %}" class="portal-card">Blog</a>
+    <a href="{% url 'projects_home' %}" class="portal-card">Projects</a>
 </div>
 {% endblock %}
