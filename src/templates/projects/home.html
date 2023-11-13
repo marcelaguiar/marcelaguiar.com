@@ -3,5 +3,13 @@
 
 
 {% block content %}
-<div class="h-screen flex justify-center">Projects home</div>
+<div class="h-screen flex justify-center">
+    <ul>
+        {% for project in all_projects %}
+        <li>
+            <a href="{{ project.url }}">{{ project.name }}: {{ project.description }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

@@ -572,8 +572,19 @@ video {
   }
 }
 
+.nav-item {
+  margin: 2rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
 .static {
   position: static;
+}
+
+.mr-auto {
+  margin-right: auto;
 }
 
 .block {
@@ -590,6 +601,10 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {

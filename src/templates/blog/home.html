@@ -3,5 +3,11 @@
 
 
 {% block content %}
-<div class="h-screen flex justify-center">Blog home</div>
+<div class="h-screen flex justify-center">
+    <ul>
+        {% for blog_post in all_blog_posts %}
+        <li>{{ blog_post.title }}: {{ blog_post.subtitle }}</li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

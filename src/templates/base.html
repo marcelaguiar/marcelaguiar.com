@@ -16,10 +16,15 @@
     <title>Marcel Aguiar</title>
 </head>
 <body>
-    <div>
-        <div class="h-screen text-white bg-gradient-to-br from-sky-300 via-purple-500 to-sky-300">
-            {% block content %}{% endblock %}
-        </div>
+    <div class="h-screen text-white bg-gradient-to-br from-sky-300 via-purple-500 to-sky-300">
+        <nav class="flex justify-end">
+            <a class="nav-item mr-auto" href="{% url 'home' %}">Home</a>
+            <a class="nav-item" href="{% url 'blog_home' %}">Blog</a>
+            <a class="nav-item" href="{% url 'projects_home' %}">Projects</a>
+            <a class="nav-item" href="#">About</a>
+            <a class="nav-item" href="#">Dark/Light Mode</a>
+        </nav>
+        {% block content %}{% endblock %}
     </div>
 </body>
 </html>
