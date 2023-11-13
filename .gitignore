@@ -60,15 +60,15 @@ venv.bak/
 .history
 
 # dependencies
-reactapp/node_modules
-reactapp/.pnp
+node_modules
+.pnp
 .pnp.js
 
 # testing
-reactapp/coverage
+coverage
 
 # production
-reactapp/build
+build
 
 # misc
 .DS_Store
