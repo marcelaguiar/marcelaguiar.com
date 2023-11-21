@@ -4,10 +4,17 @@
 
 {% block content %}
 <div class="h-screen flex justify-center">
-    <ul>
+    <div style="width: 700px; display:flex; flex-direction: column">
         {% for blog_post in all_blog_posts %}
-        <li>{{ blog_post.title }}: {{ blog_post.subtitle }}</li>
+        <div>
+            <a href="#">
+                <h2 class="text-4xl font-bold dark:text-white">{{ blog_post.title }}</h2>
+                <h3 class="text-xl font-bold dark:text-white">{{ blog_post.subtitle }}</h3>
+            </a>
+            <p>Lorem impsum</p>
+            <hr class="h-px my-8 bg-white border-0 dark:bg-gray-700">
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}

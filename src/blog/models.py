@@ -1,6 +1,10 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import signals
+from django.dispatch import receiver
+from django.template.defaultfilters import slugify
 from django.utils import timezone
+
 
 class CommonInfo(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='Created')
@@ -22,6 +26,17 @@ class CommonInfo(models.Model):
 class Post(CommonInfo):
     title = models.CharField(max_length=100, verbose_name="Title")
     subtitle = models.TextField(max_length=1000, blank=True, verbose_name="Subtitle")
+    slug = models.SlugField(default=None, null=True, verbose_name="Slug")
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["title"], name="unique_post_title")
+        ]
 
     def __str__(self):
         return self.title
+
+@receiver(signal=signals.pre_save, sender=Post)
+def Post_create(sender, instance, raw,  *args, **kwargs):
+    if instance.pk is None:
+        instance.slug = slugify(instance.title)
