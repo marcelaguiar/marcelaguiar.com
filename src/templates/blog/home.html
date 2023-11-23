@@ -3,16 +3,16 @@
 
 
 {% block content %}
-<div class="flex justify-center">
+<div class="flex justify-center text-black dark:text-white">
     <div style="width: 700px; display:flex; flex-direction: column">
         {% for blog_post in all_blog_posts %}
         <div>
             <a href="#">
-                <h2 class="text-4xl font-bold dark:text-white">{{ blog_post.title }}</h2>
-                <h3 class="text-xl font-bold dark:text-white">{{ blog_post.subtitle }}</h3>
+                <h2 class="text-4xl font-bold">{{ blog_post.title }}</h2>
+                <h3 class="text-xl font-bold">{{ blog_post.subtitle }}</h3>
             </a>
             <p>Lorem impsum</p>
-            <hr class="h-px my-8 bg-white border-0 dark:bg-gray-700">
+            <hr class="h-px my-8 dark:bg-white border-0 bg-gray-700">
         </div>
         {% endfor %}
     </div>
