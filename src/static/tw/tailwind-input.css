@@ -32,4 +32,16 @@
     .display-none {
         @apply hidden;
     }
+
+    .moon {
+        @apply 
+        w-7
+        h-7
+    }
+
+    .sun {
+        @apply 
+        w-7
+        h-7
+    }
 }
