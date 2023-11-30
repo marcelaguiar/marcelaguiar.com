@@ -44,4 +44,13 @@
         w-7
         h-7
     }
+
+    .social-icon {
+        @apply 
+        w-7
+        h-7
+        my-3
+        dark:fill-white
+        fill-black
+    }
 }

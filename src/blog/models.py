@@ -26,7 +26,7 @@ class CommonInfo(models.Model):
 class Post(CommonInfo):
     title = models.CharField(max_length=100, verbose_name="Title")
     subtitle = models.TextField(max_length=1000, blank=True, verbose_name="Subtitle")
-    slug = models.SlugField(default=None, null=True, verbose_name="Slug")
+    slug = models.SlugField(default=None, null=True, blank=True, verbose_name="Slug")
 
     class Meta:
         constraints = [
