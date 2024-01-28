@@ -23,6 +23,7 @@ class Project(CommonInfo):
     name = models.CharField(max_length=100, verbose_name="Name")
     description = models.CharField(max_length=250, verbose_name="Description")
     url = models.URLField(default=None, blank=True, null=True, verbose_name="URL")
+    main_image = models.ImageField(verbose_name='Main image', upload_to='projects/main/')
 
     def __str__(self):
         return self.name

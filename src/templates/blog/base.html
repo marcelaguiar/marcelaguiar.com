@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="flex justify-center">
+    <div style="width: 700px; display:flex; flex-direction: column">
+        {% block blog_content %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

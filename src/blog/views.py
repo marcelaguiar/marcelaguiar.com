@@ -2,7 +2,7 @@ from django.shortcuts import render
 from blog.models import Post
 
 
-def blog_home_view(request):
+def blog_home(request):
     all_blog_posts = Post.objects.all().order_by('-created')
     
     context = {
@@ -10,8 +10,8 @@ def blog_home_view(request):
     }
     return render(request, 'blog/home.html', context)
 
-def blog_post(request, slug):
-    blog_post = Post.objects.get(slug=slug)
+def blog_post(request, id, slug):
+    blog_post = Post.objects.get(pk=id)
     
     context = {
         'blog_post': blog_post

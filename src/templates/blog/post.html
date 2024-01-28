@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+
+{% block blog_content %}
+<h1 class="text-4xl font-bold">{{ blog_post.title }}</h1>
+<h2 class="text-3xl font-bold text-gray-800">{{ blog_post.subtitle }}</h2>
+<p>{{ blog_post.subtitle }}</p>
+{% endblock %}
