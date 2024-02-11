@@ -7,13 +7,35 @@
 <h2 class="text-2xl font-bold text-gray-500" m>{{ blog_post.subtitle }}</h2>
 
 <div class="flex justify-end my-3">
-    <button>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1 inline-flex self-center">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
-        </svg>
-        <span class="align-bottom">Share</span>
-    </button>
+    <div id="post-share-root" class="relative">
+        <button id="post-share-button" onclick="openShareModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1 inline-flex self-center">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+            </svg>
+            <span class="align-bottom">Share</span>
+        </button>
+        <div id="post-share-modal" class="post-share-modal dark:text-black">
+            <div class="flex items-center border-r ">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 m-2 position">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                </svg>
+            </div>
+            <div class="flex p-1 w-full">
+                <input type="text" class="text-sm w-full" value="{{ request.build_absolute_uri  }}" readonly>
+                <div class="flex items-center border-l">
+                    <button class="bg-cyan-500 text-white py-1 px-2 rounded font-medium" onclick="copyURL()">
+                        Copy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <p>{{ blog_post.body|safe }}</p>
 {% endblock %}
+
+{% block dedicated_scripts %}
+<script src="{% static 'custom/js/blog_post.js' %}"></script>
+{% endblock %}
+

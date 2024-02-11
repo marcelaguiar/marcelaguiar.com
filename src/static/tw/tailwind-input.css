@@ -53,4 +53,28 @@
         dark:fill-white
         fill-black
     }
+
+    body {
+        @apply
+        min-h-screen
+    }
+
+    .post-share-modal {
+        @apply
+        flex
+        rounded-md
+        w-0
+        bg-white
+        overflow-hidden
+        absolute
+        right-0
+        bottom-0
+        duration-200
+        ease-out
+    }
+
+    .post-share-modal-active {
+        @apply
+        w-80
+    }
 }
