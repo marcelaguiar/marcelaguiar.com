@@ -21,7 +21,7 @@
                 </svg>
             </div>
             <div class="flex p-1 w-full">
-                <input type="text" class="text-sm w-full" value="{{ request.build_absolute_uri  }}" readonly>
+                <input type="text" id="post-url" class="text-sm text-slate-800 w-full" value="{{ request.build_absolute_uri  }}" readonly>
                 <div class="flex items-center border-l">
                     <button class="bg-cyan-500 text-white py-1 px-2 rounded font-medium" onclick="copyURL()">
                         Copy

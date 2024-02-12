@@ -2,11 +2,10 @@ let pageRoot = document.body;
 let postShareRoot = document.getElementById("post-share-root");
 let postShareModal = document.getElementById("post-share-modal");
 
-pageRoot.addEventListener('click', rootClick);
+pageRoot.addEventListener('click', closeShareModal);
 postShareRoot.addEventListener('click', modalClick);
 
-function rootClick() {
-
+function closeShareModal() {
     postShareModal.classList.remove("post-share-modal-active");
     postShareModal.classList.remove("border");
 }
@@ -24,5 +23,15 @@ function modalClick(e) {
 }
 
 function copyURL() {
+    // Copy to clipboard
+    const copyText = document.getElementById("post-url").value;
 
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText);
+
+    // Success message
+
+
+    // Close modal
+    closeShareModal();
 }
