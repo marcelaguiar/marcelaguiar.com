@@ -5,12 +5,20 @@ let postShareModal = document.getElementById("post-share-modal");
 pageRoot.addEventListener('click', closeShareModal);
 postShareRoot.addEventListener('click', modalClick);
 
+let copyButton = document.getElementById("share-copy-button");
+let copyConfirmation = document.getElementById("copy-confirmation");
+let copyContainer = document.getElementById("copy-container");
+
+let timeoutId = 0;
+
 function closeShareModal() {
     postShareModal.classList.remove("post-share-modal-active");
     postShareModal.classList.remove("border");
+    clearTimeout(timeoutId);
 }
 
 function openShareModal() {
+    switchToCopyButton();
     postShareModal.classList.add("border");
     postShareModal.classList.add("post-share-modal-active");
 }
@@ -30,8 +38,29 @@ function copyURL() {
     navigator.clipboard.writeText(copyText);
 
     // Success message
+    toggleCopy();
+    timeoutId = setTimeout(function() { toggleCopy(); }, 3000);
+}
 
+function toggleCopy() {
+    if(copyButton.style.display == "none") {
+        switchToCopyButton();
+    }
+    else {
+        switchToCopySuccessIcon();
+    }    
+}
 
-    // Close modal
-    closeShareModal();
+function switchToCopyButton() {
+    copyConfirmation.style.display = "none";
+    copyContainer.classList.remove("justify-center");
+    copyContainer.classList.add("justify-end");
+    copyButton.style.display = "block";
+}
+
+function switchToCopySuccessIcon() {
+    copyButton.style.display = "none";
+    copyContainer.classList.remove("justify-end");
+    copyContainer.classList.add("justify-center");
+    copyConfirmation.style.display = "block";
 }
