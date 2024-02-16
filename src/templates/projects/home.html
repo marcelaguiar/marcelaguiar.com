@@ -9,6 +9,8 @@
         <li>
             <a href="{{ project.url }}">{{ project.name }}: {{ project.description }}</a>
         </li>
+        {% empty %}
+        <p>coming soon</p>
         {% endfor %}
     </ul>
 </div>

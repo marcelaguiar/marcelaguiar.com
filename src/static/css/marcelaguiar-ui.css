@@ -632,6 +632,14 @@ video {
   fill: #fff;
 }
 
+.social-icon:hover {
+  fill: #246A73;
+}
+
+:is(.dark .social-icon:hover) {
+  fill: #4BB3FD;
+}
+
 body {
   min-height: 100vh;
 }
@@ -886,6 +894,11 @@ body {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+:is(.dark .dark\:text-primary) {
+  --tw-text-opacity: 1;
+  color: rgb(75 179 253 / var(--tw-text-opacity));
+}
+
 :is(.dark .dark\:text-primary-light) {
   --tw-text-opacity: 1;
   color: rgb(250 247 239 / var(--tw-text-opacity));
@@ -894,9 +907,4 @@ body {
 :is(.dark .dark\:text-white) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-:is(.dark .dark\:text-primary) {
-  --tw-text-opacity: 1;
-  color: rgb(75 179 253 / var(--tw-text-opacity));
 }
