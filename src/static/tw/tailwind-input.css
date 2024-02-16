@@ -22,13 +22,29 @@
 
     .nav-item {
         @apply
-        dark:text-white
-        text-black
         text-xl
         font-semibold
         m-8
     }
 
+    .nav-item:hover {
+        @apply
+        nav-item-active
+    }
+    
+    .nav-item.active {
+        @apply
+        nav-item-active
+    }
+    
+    .nav-item-active {
+        @apply
+        underline
+        underline-offset-8
+        decoration-secondary
+        dark:decoration-primary
+    }
+    
     .display-none {
         @apply hidden;
     }
