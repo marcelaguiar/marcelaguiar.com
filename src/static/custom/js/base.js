@@ -2,6 +2,9 @@
 const sunIcon = document.querySelector(".sun");
 const moonIcon = document.querySelector(".moon");
 
+const mobileMenuBtn = document.querySelector("button.mobile-menu-button");
+const mobileMenu = document.querySelector(".mobile-menu");
+
 // Theme Vars
 const userTheme = localStorage.getItem("theme");
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -48,3 +51,9 @@ moonIcon.addEventListener("click", () => {
 
 // invoke theme check on initial load
 themeCheck();
+
+
+
+mobileMenuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+});

@@ -15,7 +15,7 @@
         rounded-lg
         shadow
         hover:bg-gray-100
-        dark:bg-gray-800
+        dark:bg-black
         dark:border-gray-700
         dark:hover:bg-gray-700 m-8
     }
@@ -41,6 +41,7 @@
         @apply
         underline
         underline-offset-8
+        decoration-2
         decoration-secondary
         dark:decoration-primary
     }
