@@ -100,6 +100,18 @@
         @apply
         w-80
     }
+
+    .mobile-menu {
+        @apply
+        overflow-hidden
+        bg-white
+        dark:bg-black
+        rounded-lg
+        mx-4
+        border-gray-500
+        transition-[max-height]
+        duration-300
+    }
     
     .mobile-menu-item {
         @apply
