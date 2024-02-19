@@ -9,12 +9,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j=cixmt*h5j-5*_)005$1&rs_avr2!etem4#cuyfdc#0cgbb)z'
+SECRET_KEY = os.environ.get('MARCELAGUIAR_DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
-ALLOWED_HOSTS = []
+APP_NAME = os.environ.get("FLY_APP_NAME")
+ALLOWED_HOSTS = [
+    f"{APP_NAME}.fly.dev",
+    "marcelaguiar.com"
+]
 
 
 # Application definition
@@ -144,3 +148,10 @@ STORAGES = {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     }
 }
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 60
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
