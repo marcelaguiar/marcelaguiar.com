@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "tailwindcss -i src/static/tw/tailwind-input.css -o src/static/css/marcelaguiar-ui.css --watch"
+    "dev": "tailwindcss -i static/tw/tailwind-input.css -o static/css/marcelaguiar-ui.css --watch"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.17",
