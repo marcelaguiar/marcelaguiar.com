@@ -1,5 +1,12 @@
+import environ
 import os
 from pathlib import Path
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,16 +16,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('MARCELAGUIAR_DJANGO_SECRET_KEY')
+SECRET_KEY = env('MARCELAGUIAR_DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+DEBUG = env('DEBUG')
 
-APP_NAME = os.environ.get("FLY_APP_NAME")
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    f"{APP_NAME}.fly.dev",
+    "marcelaguiar-com.fly.dev",
     "marcelaguiar.com"
 ]
 
@@ -77,9 +83,9 @@ WSGI_APPLICATION = 'marcelblog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'personal_site',
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASS'),
+        'NAME': 'marcelaguiarpersonalsite',
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASS'),
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -136,9 +142,9 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AWS_ACCESS_KEY = os.environ.get('MARCELAGUIAR_AWS_ACCESS_KEY')
-AWS_SECRET_ACCESS_KEY = os.environ.get('MARCELAGUIAR_AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('MARCELAGUIAR_AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY = env('MARCELAGUIAR_AWS_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = env('MARCELAGUIAR_AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('MARCELAGUIAR_AWS_STORAGE_BUCKET_NAME')
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 
