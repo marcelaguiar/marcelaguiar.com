@@ -1,23 +1,23 @@
 import environ
 import os
 from pathlib import Path
-from django.core.management.utils import get_random_secret_key
+from django.core.management import utils
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, True)
+    DEBUG=(bool, False)
 )
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('SECRET_KEY', default=get_random_secret_key())
+SECRET_KEY = env.str('SECRET_KEY', default=utils.get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
@@ -25,7 +25,7 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "marcelaguiar-com.fly.dev",
+    "marcelaguiar.fly.dev",
     "marcelaguiar.com"
 ]
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'projects.apps.ProjectsConfig',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -82,14 +84,7 @@ WSGI_APPLICATION = 'marcelblog.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'marcelaguiarpersonalsite',
-        'USER': env('POSTGRES_USER'),
-        'PASSWORD': env('POSTGRES_PASS'),
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+    'default': env.db()
 }
 
 
@@ -138,25 +133,18 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AWS_ACCESS_KEY = env('MARCELAGUIAR_AWS_ACCESS_KEY')
-AWS_SECRET_ACCESS_KEY = env('MARCELAGUIAR_AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env('MARCELAGUIAR_AWS_STORAGE_BUCKET_NAME')
+# AWS_ACCESS_KEY = env('MARCELAGUIAR_AWS_ACCESS_KEY')
+# AWS_SECRET_ACCESS_KEY = env('MARCELAGUIAR_AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = env('MARCELAGUIAR_AWS_STORAGE_BUCKET_NAME')
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
-
-STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.s3.S3Storage",
-    },
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    }
-}
 
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
@@ -164,3 +152,8 @@ SECURE_SSL_REDIRECT = not DEBUG
 SECURE_HSTS_SECONDS = 60
 SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
 SECURE_HSTS_PRELOAD = not DEBUG
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://marcelaguiar.fly.dev",
+    "https://marcelaguiar.com",
+]
