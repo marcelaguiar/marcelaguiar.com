@@ -126,4 +126,14 @@
         dark:bg-gray-900
         bg-slate-100
     }
+
+    .gradient-logo {
+        @apply
+        bg-gradient-to-r
+        from-cyan-500
+        to-indigo-500
+        inline-block
+        text-transparent
+        bg-clip-text
+    }
 }
