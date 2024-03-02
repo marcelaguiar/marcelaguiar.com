@@ -71,6 +71,7 @@
         dark:fill-white
         fill-black
     }
+    
     .social-icon:hover {
         @apply 
         fill-secondary
