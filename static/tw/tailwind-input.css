@@ -17,7 +17,8 @@
         hover:bg-gray-100
         dark:bg-black
         dark:border-gray-700
-        dark:hover:bg-gray-700 m-8
+        dark:hover:bg-gray-700
+        m-8
         text-center
     }
 
@@ -110,7 +111,7 @@
         rounded-lg
         mx-4
         border-gray-500
-        transition-all
+        transition-[max-height,border-width]
         duration-300
     }
     
