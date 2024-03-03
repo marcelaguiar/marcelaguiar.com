@@ -1,6 +1,7 @@
 // Icons
 const sunIcons = document.querySelectorAll(".sun");
 const moonIcons = document.querySelectorAll(".moon");
+const darkModeButtons = document.querySelectorAll(".dark-mode-button");
 
 const mobileMenuBtn = document.querySelector("button.mobile-menu-button");
 const mobileMenu = document.querySelector(".mobile-menu");
@@ -49,13 +50,8 @@ const themeSwitch = () => {
 };
 
 // call theme switch on clicking buttons
-sunIcons.forEach(function(icon) {
-    icon.addEventListener("click", () => {
-        themeSwitch();
-    });
-});
-moonIcons.forEach(function(icon) {
-    icon.addEventListener("click", () => {
+darkModeButtons.forEach(function(button) {
+    button.addEventListener("click", () => {
         themeSwitch();
     });
 });

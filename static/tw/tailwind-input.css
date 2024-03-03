@@ -110,7 +110,7 @@
         rounded-lg
         mx-4
         border-gray-500
-        transition-[max-height]
+        transition-all
         duration-300
     }
     
