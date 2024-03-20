@@ -1,7 +1,7 @@
+from django.db.utils import IntegrityError
+from django.http import JsonResponse
 from django.shortcuts import render
-from blog.models import Post
-
-from .forms import EmailForm
+from blog.models import Post, Subscriber
 
 
 def blog_home(request):
@@ -22,11 +22,16 @@ def blog_post(request, id, slug):
 
 def email_subscribe(request):
     if request.method == "POST":
-        form = EmailForm(request.POST)
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect("/thanks/")
+        email = request.POST["email"]
+        new_subscriber = Subscriber(email=email, created_by_id=1, modified_by_id=1)
+        save_result = True
 
-    return render(request, "name.html", {"form": form})
+        try:
+            new_subscriber.save()
+        except IntegrityError:
+            print("User attempted to subscribe an email that is already subscribed: " + email)
+        except:
+            print("An unknown error occurred!")
+            save_result = False
+        
+        return JsonResponse({'success': save_result})

@@ -38,6 +38,17 @@ class Post(CommonInfo):
     def __str__(self):
         return self.title
 
+class Subscriber(CommonInfo):
+    email = models.EmailField(max_length=254, verbose_name="Email")
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["email"], name="unique_subscriber_email")
+        ]
+
+    def __str__(self):
+        return self.email
+
 @receiver(signal=signals.pre_save, sender=Post)
 def Post_create(sender, instance, raw,  *args, **kwargs):
     if instance.pk is None:
