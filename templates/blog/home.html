@@ -1,17 +1,19 @@
-{% extends 'blog/base.html' %} {% load static %} {% block blog_content %} {% for
-blog_post in all_blog_posts %}
-<div>
-  <a
-    href="{% url 'blog-post' blog_post.id blog_post.slug %}"
-    class="hover:opacity-60"
-  >
-    <h2 class="text-4xl font-bold">{{ blog_post.title }}</h2>
-    <h3 class="text-xl font-bold text-gray-500">{{ blog_post.subtitle }}</h3>
+{% extends 'blog/base.html' %}
+{% load static %}
 
-    <div class="line-clamp-6">{{ blog_post.body|safe }}</div>
-    <div class="text-right">Read Post</div>
-  </a>
 
-  <hr class="my-8 h-px border-0 bg-primary-dark dark:bg-primary-light" />
-</div>
-{% endfor %} {% endblock %}
+{% block blog_content %}
+    {% for blog_post in all_blog_posts %}
+    <div>
+        <a href="{% url 'blog-post' blog_post.id blog_post.slug %}" class="hover:opacity-60">
+            <h2 class="text-4xl font-bold">{{ blog_post.title }}</h2>
+            <h3 class="text-xl text-gray-500 font-bold">{{ blog_post.subtitle }}</h3>
+        
+            <div class="line-clamp-6">{{ blog_post.body|safe }}</div>
+            <div class="text-right">Read Post</div>
+        </a>
+        
+        <hr class="h-px my-8 bg-primary-dark dark:bg-primary-light border-0 ">
+    </div>
+    {% endfor %}
+{% endblock %}

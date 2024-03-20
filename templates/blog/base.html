@@ -1,51 +1,31 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-<div class="flex justify-center">
-  <div class="flex max-w-screen-md flex-col">
-    <div class="flex flex-row-reverse">
-      <a href="{% url 'rss-feed' %}" title="RSS Feed">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="h-6 w-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12.75 19.5v-.75a7.5 7.5 0 00-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-          />
-        </svg>
-      </a>
-    </div>
-    {% block blog_content %}{% endblock %}
+{% extends 'base.html' %}
+{% load static %}
 
-    <div
-      class="mt-10 flex flex-col items-center rounded-lg border border-gray-500 bg-white p-4 dark:bg-black"
-    >
-      <p class="mb-2 max-w-prose">
-        Subscribe to be notified of new blog posts. Its free, there's no spam,
-        and you can unsubscribe at any time.
-      </p>
-      <form id="post-form" class="">
-        {% csrf_token %}
-        <input
-          type="email"
-          id="subscriber_email"
-          maxlength="100"
-          required
-          class="mr-1 rounded-md border bg-white p-1 text-black"
-        />
-        <input
-          type="submit"
-          value="Subscribe"
-          class="rounded-md bg-secondary px-2 py-1 font-bold text-white hover:cursor-pointer dark:bg-primary"
-        />
-      </form>
+
+{% block content %}
+<div class="flex justify-center">
+    <div class="max-w-screen-md flex flex-col">
+        <div class="flex flex-row-reverse">
+            <a href="{% url 'rss-feed' %}" title="RSS Feed">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 19.5v-.75a7.5 7.5 0 00-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                </svg>
+            </a>
+        </div>
+        {% block blog_content %}{% endblock %}
+
+        <div class="flex flex-col items-center bg-white dark:bg-black p-4 mt-10 rounded-lg border border-gray-500">
+            <p class="mb-2 max-w-prose">Subscribe to be notified of new blog posts. Its free, there's no spam, and you can unsubscribe at any time.</p>
+            <form id="post-form" class="">
+                {% csrf_token %}
+                <input type="email" id="subscriber_email" maxlength="100" required class="text-black rounded-md bg-white border p-1 mr-1">
+                <input type="submit" value="Subscribe" class="bg-secondary text-white dark:bg-primary font-bold py-1 px-2 rounded-md hover:cursor-pointer">
+            </form>
+        </div>
     </div>
-  </div>
 </div>
-{% endblock %} {% block dedicated_scripts %}
+{% endblock %}
+
+{% block dedicated_scripts %}
 <script src="{% static 'custom/js/blog_base.js' %}"></script>
 {% endblock %}

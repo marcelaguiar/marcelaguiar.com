@@ -1,15 +1,17 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
 <div class="flex justify-center text-black dark:text-white">
-  <ul>
-    {% for project in all_projects %}
-    <li>
-      <a href="{{ project.url }}"
-        >{{ project.name }}: {{ project.description }}</a
-      >
-    </li>
-    {% empty %}
-    <p>coming soon</p>
-    {% endfor %}
-  </ul>
+    <ul>
+        {% for project in all_projects %}
+        <li>
+            <a href="{{ project.url }}">{{ project.name }}: {{ project.description }}</a>
+        </li>
+        {% empty %}
+        <p>coming soon</p>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}
