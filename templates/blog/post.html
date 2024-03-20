@@ -1,45 +1,85 @@
-{% extends 'blog/base.html' %}
-{% load static %}
-
-
-{% block blog_content %}
+{% extends 'blog/base.html' %} {% load static %} {% block blog_content %}
 <h1 class="text-4xl font-bold">{{ blog_post.title }}</h1>
 <h2 class="text-2xl font-bold text-gray-500">{{ blog_post.subtitle }}</h2>
 <div class="text-sm text-gray-400">{{ blog_post.created|date:"M d, Y" }}</div>
 
-<div class="flex justify-end my-3">
-    <div id="post-share-root" class="relative">
-        <button id="post-share-button" onclick="openShareModal()">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1 inline-flex self-center">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
-            </svg>
-            <span class="align-bottom">Share</span>
-        </button>
-        <div id="post-share-modal" class="post-share-modal dark:text-black">
-            <div class="flex items-center border-r ">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 m-2 position">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
-                </svg>
-            </div>
-            <div class="flex p-1 w-full">
-                <input type="text" id="post-url" class="text-sm text-slate-800 w-full" value="{{ request.build_absolute_uri  }}" readonly>
-                <div id="copy-container" class="flex items-center border-l w-16 justify-end">
-                    <button id="share-copy-button" class="bg-primary text-white py-1 px-2 rounded text-sm" onclick="copyURL()">
-                        Copy
-                    </button>
-                    <svg id="copy-confirmation" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hidden text-green-700">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                </div>
-            </div>
+<div class="my-3 flex justify-end">
+  <div id="post-share-root" class="relative">
+    <button id="post-share-button" onclick="openShareModal()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="mr-1 inline-flex h-6 w-6 self-center"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"
+        />
+      </svg>
+      <span class="align-bottom">Share</span>
+    </button>
+    <div id="post-share-modal" class="post-share-modal dark:text-black">
+      <div class="flex items-center border-r">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="position m-2 h-5 w-5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+          />
+        </svg>
+      </div>
+      <div class="flex w-full p-1">
+        <input
+          type="text"
+          id="post-url"
+          class="w-full text-sm text-slate-800"
+          value="{{ request.build_absolute_uri  }}"
+          readonly
+        />
+        <div
+          id="copy-container"
+          class="flex w-16 items-center justify-end border-l"
+        >
+          <button
+            id="share-copy-button"
+            class="rounded bg-primary px-2 py-1 text-sm text-white"
+            onclick="copyURL()"
+          >
+            Copy
+          </button>
+          <svg
+            id="copy-confirmation"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="hidden h-6 w-6 text-green-700"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <p>{{ blog_post.body|safe }}</p>
-{% endblock %}
-
-{% block dedicated_scripts %}
+{% endblock %} {% block dedicated_scripts %}
 <script src="{% static 'custom/js/blog_post.js' %}"></script>
 {% endblock %}
-
