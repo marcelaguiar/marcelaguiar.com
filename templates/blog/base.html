@@ -16,10 +16,17 @@
 
         <div class="flex flex-col items-center bg-white dark:bg-black p-4 mt-10 rounded-lg border border-gray-500">
             <p class="mb-2 max-w-prose">Subscribe to be notified of new blog posts. Its free, there's no spam, and you can unsubscribe at any time.</p>
-            <form id="post-form" class="">
+            <form id="post-form" class="flex"  action="?" method="POST"> 
                 {% csrf_token %}
-                <input type="email" id="subscriber_email" maxlength="100" required class="text-black rounded-md bg-white border p-1 mr-1">
-                <input type="submit" value="Subscribe" class="bg-secondary text-white dark:bg-primary font-bold py-1 px-2 rounded-md hover:cursor-pointer">
+                <input type="email" id="subscriber_email" maxlength="100" required class="text-black rounded-md bg-white border p-1">
+                <div id="subscribe-container" class="w-24 flex justify-center items-center">
+                    <button id="subscribe-button" class="g-recaptcha bg-secondary text-white dark:bg-primary font-bold w-24 py-1 px-2 rounded-md hover:cursor-pointer" data-sitekey="6Les8Z8pAAAAALfJTP4vEtqb6eq0J-XDJSaFPkyM" data-callback="subscribe">
+                        Subscribe
+                    </button>
+                    <svg id="subscription-confirmation" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hidden text-green-700">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </div>
             </form>
         </div>
     </div>
@@ -27,5 +34,6 @@
 {% endblock %}
 
 {% block dedicated_scripts %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="{% static 'custom/js/blog_base.js' %}"></script>
 {% endblock %}
