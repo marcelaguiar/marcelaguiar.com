@@ -6,7 +6,7 @@ $(document).on('submit','#post-form', function(e) {
     e.preventDefault();
     $.ajax({
         type: 'POST',
-        url: "subscribe/",
+        url: email_subscribe_url,
         data: {
             email: $('#subscriber_email').val(),
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
