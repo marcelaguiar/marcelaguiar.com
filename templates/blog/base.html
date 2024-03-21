@@ -18,7 +18,7 @@
             <p class="mb-2 max-w-prose">Subscribe to be notified of new blog posts. Its free, there's no spam, and you can unsubscribe at any time.</p>
             <form id="post-form" class="flex" action="?" method="POST"> 
                 {% csrf_token %}
-                <input type="email" id="subscriber_email" maxlength="100" required class="text-black rounded-md bg-white border p-1">
+                <input type="email" id="subscriber_email" maxlength="100" placeholder="Your email address" required class="text-black rounded-md bg-white border p-1">
                 <div id="subscribe-container" class="w-24 flex justify-center items-center">
                     <button id="subscribe-button" class="g-recaptcha bg-secondary text-white dark:bg-primary font-bold w-24 py-1 px-2 rounded-md hover:cursor-pointer" data-sitekey="6Les8Z8pAAAAALfJTP4vEtqb6eq0J-XDJSaFPkyM" data-callback="subscribe">
                         Subscribe
