@@ -8,7 +8,8 @@ urlpatterns = [
     path('', views.home_view, name='home'),
     path('blog/', include('blog.urls')),
     path('projects/', include('projects.urls')),
-    path('about/', views.about_view, name="about-home")
+    path('about/', views.about_view, name="about-home"),
+    path("ckeditor5/", include('django_ckeditor_5.urls'))
 ]
 
 if settings.DEBUG:
